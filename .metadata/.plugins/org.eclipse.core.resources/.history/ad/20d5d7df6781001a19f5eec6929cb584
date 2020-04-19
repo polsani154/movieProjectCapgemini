@@ -1,0 +1,10 @@
+package com.movie.entities;
+
+import org.springframework.context.annotation.Bean;
+
+@Bean
+
+public class Seat {
+	
+
+}

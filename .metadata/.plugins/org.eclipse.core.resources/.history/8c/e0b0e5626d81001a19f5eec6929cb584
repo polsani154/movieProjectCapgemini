@@ -1,0 +1,20 @@
+package com.movie.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+@Entity
+@Table(name="movies")
+@DynamicUpdate
+@DynamicInsert
+public class Movie {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+
+}

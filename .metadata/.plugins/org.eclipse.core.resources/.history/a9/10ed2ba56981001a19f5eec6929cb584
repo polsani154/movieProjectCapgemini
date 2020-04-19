@@ -1,0 +1,30 @@
+package com.movie.entities;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.stereotype.Component;
+
+@Component
+@Table(name="Seat")
+@DynamicInsert
+@DynamicUpdate
+public class Seat {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="seat_id")
+	private int seatId;
+	
+	@Column(name="seat_price")
+	private double seatPrice;
+	
+	
+	
+
+}

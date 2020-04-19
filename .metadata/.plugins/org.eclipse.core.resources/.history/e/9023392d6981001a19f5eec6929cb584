@@ -1,0 +1,16 @@
+package com.movie.entities;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Table(name="Seat")
+public class Seat {
+
+	@Id
+	private int seatid;
+	
+
+}

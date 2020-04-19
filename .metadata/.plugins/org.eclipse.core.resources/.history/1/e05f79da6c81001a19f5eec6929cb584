@@ -1,0 +1,47 @@
+package com.movie.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Entity
+@Table(name="screens")
+public class Screen {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="screen_id")
+	private int screenId;
+	
+	@Column(name="theatre_id")
+	private int theatreId;
+	
+	@Column(name="screen_name")
+	private String screenName;
+	
+	@Column(name="hall_width")
+	private int hallWidth;
+	
+	@Column(name="hall_height")
+	private int hallHeight;
+
+	@ManyToOne
+	@JoinColumn(name="show_id", referencedColumnName = "show_id")
+	@Autowired
+	private Show show;
+	
+	@ManyToOne
+	@JoinColumn(name="movie_id", referencedColumnName = "movie_id")
+	@Autowired
+	private Movie movie;
+	
+	
+	
+	
+}

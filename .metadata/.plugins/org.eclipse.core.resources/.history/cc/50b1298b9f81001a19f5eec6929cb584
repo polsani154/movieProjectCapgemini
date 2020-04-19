@@ -1,0 +1,82 @@
+package com.movie.entities;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
+
+@Entity
+public class Section {
+	
+	private String name;
+	
+	@Autowired
+	private Seat[] seats;
+	
+	private double price;
+	
+	@Autowired
+	private SeatType seatType;
+	
+	
+	private Pair<Integer,Integer> sectionStartIndex; 
+	
+	private Pair<Integer,Integer> sectionEndIndex;
+
+	private LocalDate lastModified=LocalDate.now();
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Seat[] getSeats() {
+		return seats;
+	}
+
+	public void setSeats(Seat[] seats) {
+		this.seats = seats;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public SeatType getSeatType() {
+		return seatType;
+	}
+
+	public void setSeatType(SeatType seatType) {
+		this.seatType = seatType;
+	}
+
+	public Pair<Integer, Integer> getSectionStartIndex() {
+		return sectionStartIndex;
+	}
+
+	public void setSectionStartIndex(Pair<Integer, Integer> sectionStartIndex) {
+		this.sectionStartIndex = sectionStartIndex;
+	}
+
+	public Pair<Integer, Integer> getSectionEndIndex() {
+		return sectionEndIndex;
+	}
+
+	public void setSectionEndIndex(Pair<Integer, Integer> sectionEndIndex) {
+		this.sectionEndIndex = sectionEndIndex;
+	} 
+	
+	
+	
+
+}
