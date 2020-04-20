@@ -1,8 +1,0 @@
-package com.movie.demo;
-
-import org.springframework.stereotype.Repository;
-
-@Repository
-public class moviedao implements  {
-
-}

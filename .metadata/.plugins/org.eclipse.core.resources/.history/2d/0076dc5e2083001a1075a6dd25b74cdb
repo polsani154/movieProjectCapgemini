@@ -1,0 +1,20 @@
+package com.movie.dao;
+
+import com.movie.entities.User;
+import com.movie.entities.UserType;
+
+public interface IUserDao {
+
+	public UserType getUserType();
+	
+	public Boolean getPassword(Integer userId);
+	
+	public Boolean isSessionActive(String session);
+	
+	public void removeSession(String session);
+	
+	public long addOtp(long otp);
+	
+	
+	
+}

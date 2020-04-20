@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -65,7 +67,8 @@ public class Booking {
 	@Column(name="show_id")
 	private Integer showId;
 
-	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Customer customer;
 	
 	public Booking() {
 		super();
@@ -141,6 +144,30 @@ public class Booking {
 	}
 
 	public void setShowId(int showId) {
+		this.showId = showId;
+	}
+
+	public Show getShowRef() {
+		return showRef;
+	}
+
+	public void setShowRef(Show showRef) {
+		this.showRef = showRef;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public void setTransactionId(Integer transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public void setShowId(Integer showId) {
 		this.showId = showId;
 	}
 	

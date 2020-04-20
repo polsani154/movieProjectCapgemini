@@ -1,0 +1,14 @@
+package com.movie.dao;
+
+import com.movie.entities.User;
+import com.movie.entities.UserType;
+
+public interface IUserDao {
+
+	public UserType getUserType();
+	
+	public Boolean getPassword(Integer userId);
+	
+	public Boolean
+	
+}

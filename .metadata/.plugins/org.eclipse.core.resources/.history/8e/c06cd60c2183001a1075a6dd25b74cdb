@@ -1,0 +1,10 @@
+package com.movie.dao;
+
+public interface ICustomerDao {
+	
+	public void changeUserName(String username);
+	
+	public void changeEmail(String email);
+	
+
+}
