@@ -23,7 +23,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Inheritance(strategy=InheritanceType.JOINED) 
 @DynamicUpdate
 @DynamicInsert
-public class User implements Serializable {
+public class User  {
 	
 	@Id
 	@Column(name="user_id")

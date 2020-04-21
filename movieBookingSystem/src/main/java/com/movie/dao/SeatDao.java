@@ -1,8 +1,11 @@
 package com.movie.dao;
 
+import java.util.List;
+
+import com.movie.entities.Admin;
 import com.movie.entities.Seat;
 
-public class SeatDao implements ISeatDao {
+public class SeatDao implements ISeatDao,IUniversalDao<Seat> {
 
 	@Override
 	public Boolean isSeatBlocked() {
@@ -48,6 +51,48 @@ public class SeatDao implements ISeatDao {
 
 	@Override
 	public Seat UnBlockSeat() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Seat save(Seat entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Seat findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Seat remove(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Seat remove(Seat entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Seat update(Integer id, Seat entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Seat> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Seat update(Seat entityObject) {
 		// TODO Auto-generated method stub
 		return null;
 	}

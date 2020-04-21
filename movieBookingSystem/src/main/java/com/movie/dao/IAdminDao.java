@@ -3,7 +3,7 @@ package com.movie.dao;
 import com.movie.entities.Admin;
 import com.movie.entities.Theatre;
 
-public interface IAdminDao {
+public interface IAdminDao{
 	
 	public Admin getAdmin(Integer userid);
 	

@@ -31,6 +31,8 @@ public interface IMovieDao {
 	
 	public List<Theatre> getAllTheatres();
 	
+	public void addMovie(Movie movie);
+	
 	public Boolean addTheatre();
 	
 	public Boolean removeTheatre();

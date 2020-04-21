@@ -1,17 +1,20 @@
 package com.movie.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.movie.entities.Admin;
 import com.movie.entities.User;
 import com.movie.entities.UserType;
 
 @Repository
 @Transactional
-public class UserDao implements IUserDao {
+public class UserDao implements IUserDao,IUniversalDao<User>{
 
 	@PersistenceContext
 	private EntityManager em;
@@ -88,6 +91,48 @@ public class UserDao implements IUserDao {
 	public void removeUser(Integer userId) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public User save(User entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User remove(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User remove(User entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User update(Integer id, User entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User update(User entityObject) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

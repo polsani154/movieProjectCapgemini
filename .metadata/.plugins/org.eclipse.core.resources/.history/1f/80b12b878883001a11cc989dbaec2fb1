@@ -1,0 +1,8 @@
+package com.movie.dao;
+
+public interface IUniversalDao<T> {
+
+	public <T> void save(T entityObject);
+	
+	
+}

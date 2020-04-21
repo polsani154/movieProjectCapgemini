@@ -1,10 +1,12 @@
 package com.movie.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -57,14 +59,29 @@ public class Movie {
 	@Column(name="image_links")
 	private String[] imageLinks;
 	
-	@ManyToMany(cascade=CascadeType.MERGE)
+	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@JoinTable(name="movie_theatre",
 			joinColumns=@JoinColumn(name="movie_id"),
 			inverseJoinColumns=@JoinColumn(name="theatre_id")
 	)
-	private List<Theatre> listOfTheatres;
+	private Set<Theatre> listOfTheatres;
 	
 	
+	public Set<Theatre> getListOfTheatres() {
+		return listOfTheatres;
+	}
+
+	public void setListOfTheatres(Set<Theatre> listOfTheatres) {
+		this.listOfTheatres = listOfTheatres;
+	}
+
+	public void setMovieId(Integer movieId) {
+		this.movieId = movieId;
+	}
+
+	public void setRuntime(Integer runtime) {
+		this.runtime = runtime;
+	}
 
 	public Movie() {
 		super();
