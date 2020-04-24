@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -19,49 +20,66 @@ import com.movie.entities.Ticket;
 
 @Repository
 @Transactional
-public class MovieDao implements IMovieDao,IUniversalDao<Movie> {
+public class MovieDao implements IUniversalDao<Movie> {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 	
 
 	@Override
-	public Movie save(Movie entityObject) {
+	public void save(Movie entityObject) {
 		// TODO Auto-generated method stub
 		em.persist(entityObject);
-		return entityObject;
+		
 	}
 
 	@Override
-	public Movie findById(Integer id) {
+	public Movie findById(Integer id) throws EntityNotFoundException,NullPointerException{
 		// TODO Auto-generated method stub
-		return em.find(Movie.class,id);
-		
+		Movie movie= em.find(Movie.class,id);
+		if(movie==null)
+		{
+			throw new EntityNotFoundException();
+		}
+		return movie;
 	}
 
 	@Override
 	public Movie remove(Integer id) {
 		// TODO Auto-generated method stub
+		Movie movie=findById(id);
+		if(movie!=null)
+		{
+			em.remove(movie);
+		}
 		return null;
 	}
 
 	@Override
 	public Movie remove(Movie entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(entityObject);
+		return entityObject;
 	}
 
 	@Override
 	public Movie update(Integer id, Movie entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		Movie movie=findById(id);
+		if(movie==null)
+		{
+			System.out.println("Update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 	@Override
 	public List<Movie> findAll() {
 		// TODO Auto-generated method stub
 		
-		Query q=em.createQuery("select movie From Movie movie");
+		Query q=em.createQuery("From Movie movie");
 		System.out.println(q.getResultList()==null);
 		return (List<Movie>) q.getResultList();
 	}
@@ -69,97 +87,16 @@ public class MovieDao implements IMovieDao,IUniversalDao<Movie> {
 	@Override
 	public Movie update(Movie entityObject) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getGenre() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void changeRunTime() {
-		// TODO Auto-generated method stub
+		Movie movie=findById(entityObject.getMovieId());
+		if(movie==null)
+		{
+			System.out.println("update error: no such entity exists first save then do this update operation");
+			return null;
+		}
 		
+		return em.merge(entityObject);
 	}
 
-	@Override
-	public String getTrailerLink() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public Movie save() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Movie remove() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String[] getImageLinks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addImageLink(String imageLink) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addImageLinks(String[] imageLinks) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void changeHero(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addLanguage(String[] language) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String removeLanguage(String language) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Theatre> getAllTheatres() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addMovie(Movie movie) {
-		// TODO Auto-generated method stub
-		em.persist(movie);
-	}
-
-	@Override
-	public Boolean addTheatre() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean removeTheatre() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

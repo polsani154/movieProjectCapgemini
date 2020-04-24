@@ -1,5 +1,6 @@
 package com.movie.entities;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -18,16 +19,27 @@ import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="movies")
 @DynamicUpdate
 @DynamicInsert
+//@JsonIgnoreProperties("listOfMovies")
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="movieId")
 public class Movie {
 	
 	@Id
 	@Column(name="movie_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer movieId;
+	
 	
 	@Column(name="movie_name")
 	private String movieName;
@@ -66,7 +78,7 @@ public class Movie {
 	)
 	private Set<Theatre> listOfTheatres;
 	
-	
+	@JsonIgnore
 	public Set<Theatre> getListOfTheatres() {
 		return listOfTheatres;
 	}

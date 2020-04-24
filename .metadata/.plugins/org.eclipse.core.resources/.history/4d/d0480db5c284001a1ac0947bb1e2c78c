@@ -1,0 +1,63 @@
+package com.movie.services;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.movie.dao.IShowDao;
+import com.movie.dao.IUniversalDao;
+import com.movie.entities.Screen;
+import com.movie.entities.Seat;
+import com.movie.entities.Show;
+import com.movie.entities.Theatre;
+
+public class ShowService implements IShowService{
+
+	@Autowired
+	IUniversalDao<Show> dao;
+	IShowDao dao2;
+	
+	@Override
+	public String getShowName(Integer id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id).getShowName();
+	}
+
+	@Override
+	public Show getShow(Integer id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id);
+	}
+
+	@Override
+	public LocalDateTime getShowStartTime(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LocalDateTime getShowEndTime(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Seat> getSeats(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Screen getScreen(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Theatre getTheatre(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

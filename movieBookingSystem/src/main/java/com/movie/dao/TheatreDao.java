@@ -3,7 +3,9 @@ package com.movie.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -14,116 +16,81 @@ import com.movie.entities.Theatre;
 
 @Repository
 @Transactional
-public class TheatreDao implements ITheatreDao,IUniversalDao<Theatre> {
+public class TheatreDao implements IUniversalDao<Theatre> {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
+	
 	
 	@Override
-	public Theatre addTheatre(Theatre theatre) {
+	public void save(Theatre entityObject) {
 		// TODO Auto-generated method stub
-		em.persist(theatre);
-		return null;
+		em.persist(entityObject);
 	}
 
 	@Override
-	public Theatre deleteTheatreById(Integer id) {
+	public Theatre findById(Integer id) throws EntityNotFoundException,NullPointerException {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String changeManager(String managerName,Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String changeManagerContact(String contact,Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Movie> getAllMovies(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Theatre> getAllTheatresOfCity(String cityname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String changeTheatreName(String name,Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String changeCityName(String cityname,Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Theatre save(Theatre entityObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Theatre findById(Integer id) {
-		// TODO Auto-generated method stub
-		
-		return em.find(Theatre.class, id);
+		Theatre theatre= em.find(Theatre.class,id);
+		if(theatre==null)
+		{
+			throw new EntityNotFoundException();
+		}
+		return theatre;	
 	}
 
 	@Override
 	public Theatre remove(Integer id) {
 		// TODO Auto-generated method stub
+		Theatre theatre=findById(id);
+		if(theatre!=null)
+		{
+			em.remove(theatre);
+		}
 		return null;
 	}
 
 	@Override
 	public Theatre remove(Theatre entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(entityObject);
+		return entityObject;
 	}
 
 	@Override
 	public Theatre update(Integer id, Theatre entityObject) {
 		// TODO Auto-generated method stub
-		Theatre t=em.find(Theatre.class, id);
-		em.merge(entityObject);
-		return entityObject;
+		Theatre theatre=findById(id);
+		if(theatre==null)
+		{
+			System.out.println("Update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 	@Override
 	public List<Theatre> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		Query q=em.createQuery("From Theatre theatre");
+		System.out.println(q.getResultList()==null);
+		return (List<Theatre>) q.getResultList();
 	}
 
 	@Override
 	public Theatre update(Theatre entityObject) {
 		// TODO Auto-generated method stub
-		em.merge(entityObject);
-		return entityObject;
+		Theatre theatre=findById(entityObject.getTheatreId());
+		if(theatre==null)
+		{
+			System.out.println("update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
-	@Override
-	public Boolean isExists(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public Theatre getTheatre(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

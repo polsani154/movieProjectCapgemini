@@ -1,6 +1,10 @@
 package com.movie.entities;
 
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,13 +19,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="shows")
 @DynamicUpdate
 @DynamicInsert
+//@JsonIgnoreProperties("show")
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="showId")
 public class Show {
 
 	@Id
@@ -31,10 +47,10 @@ public class Show {
 	
 	
 	@Column(name="show_start_time")
-	private Time showStartTime;
+	private LocalDateTime showStartTime;
 	
 	@Column(name="show_end_time")
-	private Time showEndTime;
+	private LocalDateTime showEndTime;
 	
 	
 	
@@ -49,10 +65,12 @@ public class Show {
 	private Movie movie;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="screen_id")
 	private Screen screen;
 	
-	@Column(name="theatre_id")
-	private Integer theatreId;
+	@ManyToOne()
+	@JoinColumn(name="theatre_id")
+	private Theatre theatre;
 
 	public Show() {
 		super();
@@ -66,26 +84,27 @@ public class Show {
 		this.showId = showId;
 	}
 
-	public Time getShowStartTime() {
+	public LocalDateTime getShowStartTime() {
 		return showStartTime;
 	}
 
-	public void setShowStartTime(Time showStartTime) {
+	public void setShowStartTime(LocalDateTime showStartTime) {
 		this.showStartTime = showStartTime;
 	}
 
-	public Time getShowEndTime() {
+	public LocalDateTime getShowEndTime() {
 		return showEndTime;
 	}
 
-	public void setShowEndTime(Time showEndTime) {
+	public void setShowEndTime(LocalDateTime showEndTime) {
 		this.showEndTime = showEndTime;
 	}
 
+	@JsonIgnore
 	public List<Seat> getSeats() {
 		return seats;
 	}
-
+	
 	public void setSeats(List<Seat> seats) {
 		this.seats = seats;
 	}
@@ -98,29 +117,31 @@ public class Show {
 		this.showName = showName;
 	}
 
-	public Movie getMovieName() {
+	public Movie getMovie() {
 		return movie;
 	}
 
-	public void setMovieName(Movie movie) {
+	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
 
-	public Screen getScreenId() {
+	public Screen getScreen() {
 		return screen;
 	}
 
-	public void setScreenId(Screen screenId) {
+	public void setScreen(Screen screenId) {
 		this.screen = screenId;
 	}
 
-	public int getTheatreId() {
-		return theatreId;
+	public Theatre getTheatre() {
+		return theatre;
 	}
 
-	public void setTheatreId(int theatreId) {
-		this.theatreId = theatreId;
+	public void setTheatre(Theatre theatreId) {
+		this.theatre = theatreId;
 	}
+	
+	
 	
 	
 }

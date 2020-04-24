@@ -1,0 +1,81 @@
+package com.movie.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
+
+import com.movie.entities.Admin;
+import com.movie.entities.Movie;
+import com.movie.entities.Theatre;
+
+@Repository
+@Transactional
+public class TheatreDao implements IUniversalDao<Theatre> {
+
+	@PersistenceContext
+	EntityManager em;
+	
+	
+	@Override
+	public Theatre save(Theatre entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Theatre findById(Integer id) {
+		// TODO Auto-generated method stub
+		
+		return em.find(Theatre.class, id);
+	}
+
+	@Override
+	public Theatre remove(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Theatre remove(Theatre entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Theatre update(Integer id, Theatre entityObject) {
+		// TODO Auto-generated method stub
+		Theatre t=em.find(Theatre.class, id);
+		em.merge(entityObject);
+		return entityObject;
+	}
+
+	@Override
+	public List<Theatre> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Theatre update(Theatre entityObject) {
+		// TODO Auto-generated method stub
+		em.merge(entityObject);
+		return entityObject;
+	}
+
+	@Override
+	public Boolean isExists(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Theatre getTheatre(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

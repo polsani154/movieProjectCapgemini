@@ -1,0 +1,65 @@
+package com.movie.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
+
+import com.movie.entities.Admin;
+import com.movie.entities.Screen;
+import com.movie.entities.Show;
+import com.movie.entities.Theatre;
+
+@Repository
+@Transactional
+public class ScreenDao implements IUniversalDao<Screen> {
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public void save(Screen entityObject) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Screen findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Screen remove(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Screen remove(Screen entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Screen update(Integer id, Screen entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Screen> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Screen update(Screen entityObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

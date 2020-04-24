@@ -1,93 +1,93 @@
 package com.movie.dao;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 
 import com.movie.entities.Admin;
 
-public class AdminDao implements IAdminDao,IUniversalDao<Admin> {
+@Repository
+@Transactional
+public class AdminDao implements IUniversalDao<Admin> {
+
+	@PersistenceContext
+	private EntityManager em;
+
 
 	@Override
-	public Admin getAdmin(Integer userid) {
+	public void save(Admin entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		em.persist(entityObject);
 	}
 
 	@Override
-	public String getAdminContact(Integer userId) {
+	public Admin findById(Integer id) throws NullPointerException {
 		// TODO Auto-generated method stub
-		return null;
+		Admin admin= em.find(Admin.class,id);
+		if(admin==null)
+		{
+			throw new EntityNotFoundException("Admin not found");
+		}
+		return admin;
 	}
 
 	@Override
-	public String getAdminName(Integer userId) {
+	public Admin remove(Integer id) throws NullPointerException {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean isAdmin(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Admin addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeAdmin(Integer userId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Admin save(Admin entityObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Admin findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Admin remove(Integer id) {
-		// TODO Auto-generated method stub
+		Admin admin=findById(id);
+		if(admin!=null)
+		{
+			em.remove(admin);
+		}
+		System.out.println("The entity u want to delete is not found");
 		return null;
 	}
 
 	@Override
 	public Admin remove(Admin entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(entityObject);
+		return entityObject;
 	}
 
 	@Override
 	public Admin update(Integer id, Admin entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		Admin admin=findById(id);
+		if(admin==null)
+		{
+			System.out.println("update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 	@Override
 	public List<Admin> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		Query q=em.createQuery("From Admin admin");
+		return q.getResultList();
 	}
 
 	@Override
 	public Admin update(Admin entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		Admin admin=findById(entityObject.getUserId());
+		if(admin==null)
+		{
+			System.out.println("update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 }

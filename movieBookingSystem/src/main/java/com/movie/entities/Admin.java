@@ -10,10 +10,15 @@ import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
-//@Table(name="admins")
+@Table
 @DynamicInsert
 @DynamicUpdate
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="userId")
 public class Admin extends User{	
 	
 	@Column(name="admin_name")

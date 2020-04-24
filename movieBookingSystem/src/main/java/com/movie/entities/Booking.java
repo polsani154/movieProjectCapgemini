@@ -20,10 +20,18 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="bookings")
 @DynamicUpdate
 @DynamicInsert
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="bookingId")
 public class Booking {
 
 	@Id
@@ -40,6 +48,7 @@ public class Booking {
 	@JoinColumn(name="show_ref",referencedColumnName="show_id")
 	@OneToOne
 	@Autowired
+//	@JsonBackReference
 	private Show showRef;
 	
 	
@@ -53,11 +62,13 @@ public class Booking {
 	
 	@OneToMany
 	@Column(name="seat_id")
+//	@JsonManagedReference
 	private List<Seat> seatList=new ArrayList<>();
 	
 	
 	@OneToOne
 	@Autowired
+//	@JsonBackReference
 	private Ticket ticket;
 
 	@Column(name="transaction_id")
@@ -68,6 +79,7 @@ public class Booking {
 	private Integer showId;
 
 	@ManyToOne(fetch=FetchType.LAZY)
+//	@JsonBackReference
 	private Customer customer;
 	
 	public Booking() {
@@ -90,6 +102,7 @@ public class Booking {
 		this.movie = movie;
 	}
 
+	@JsonIgnore
 	public Show getShow() {
 		return showRef;
 	}
@@ -147,6 +160,7 @@ public class Booking {
 		this.showId = showId;
 	}
 
+	
 	public Show getShowRef() {
 		return showRef;
 	}
@@ -155,6 +169,7 @@ public class Booking {
 		this.showRef = showRef;
 	}
 
+	
 	public Customer getCustomer() {
 		return customer;
 	}

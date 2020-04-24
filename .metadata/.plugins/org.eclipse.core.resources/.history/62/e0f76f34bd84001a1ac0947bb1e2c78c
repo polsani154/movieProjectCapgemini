@@ -1,0 +1,59 @@
+package com.movie.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.movie.dao.IUniversalDao;
+import com.movie.entities.Screen;
+import com.movie.entities.Show;
+import com.movie.entities.Theatre;
+
+public class ScreenService implements IScreenService{
+
+	@Autowired
+	IUniversalDao<Screen> dao;
+	
+	@Override
+	public Screen getScreen(Integer id) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return dao.findById(id);
+	}
+
+	@Override
+	public String getscreenName(Integer id) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return dao.findById(id).getScreenName();
+	}
+
+	@Override
+	public String getTheatreName(Integer id) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Show> getListOfShows(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getHeight(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getWidth(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Theatre getTheatre(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

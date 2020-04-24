@@ -17,8 +17,18 @@ import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="screens")
+//@JsonIgnoreProperties("listOfScreens")
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="screenId")
 public class Screen {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -57,11 +67,16 @@ public class Screen {
 		this.screenId = screenId;
 	}
 
-	public Theatre getTheatreId() {
+	@JsonIgnore
+	public Theatre getTheatre() {
 		return theatre;
 	}
+	
+	public Integer getTheatreId() throws NullPointerException {
+		return theatre.getTheatreId();
+	}
 
-	public void setTheatreId(Theatre theatreId) {
+	public void setTheatre(Theatre theatreId) {
 		this.theatre = theatreId;
 	}
 
@@ -89,9 +104,11 @@ public class Screen {
 		this.hallHeight = hallHeight;
 	}
 
+	
 	public List<Show> getShow() {
 		return show;
 	}
+	
 
 	public void setShow(List<Show> show) {
 		this.show = show;

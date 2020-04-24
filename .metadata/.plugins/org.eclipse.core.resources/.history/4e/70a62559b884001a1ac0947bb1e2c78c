@@ -1,0 +1,16 @@
+package com.movie.services;
+
+import java.time.LocalDateTime;
+
+import com.movie.entities.Show;
+
+public interface IShowService {
+
+	public String getShowName(Integer id);
+	
+	public Show getShow(Integer id);
+	
+	public LocalDateTime getShowStartTime(Integer id);
+	
+	
+}

@@ -1,0 +1,13 @@
+package com.movie.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController(value="movie")
+public class MasterController {
+
+	@GetMapping(value="/{id}")
+	public 
+	
+	
+}

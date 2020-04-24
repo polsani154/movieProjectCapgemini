@@ -16,8 +16,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="theatres")
+//@JsonIgnoreProperties("listOfTheatres")
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="theatreId")
 public class Theatre {
 
 	@Id
@@ -36,6 +46,7 @@ public class Theatre {
 	joinColumns=@JoinColumn(name="theatre_id"),
 	inverseJoinColumns=@JoinColumn(name="movie_id"))
 	@Column(name="movie_id")
+//	@JsonBackReference
 	private Set<Movie> listOfMovies;
 	
     @OneToMany(
@@ -43,6 +54,7 @@ public class Theatre {
             cascade = CascadeType.ALL,
             orphanRemoval = true
         )
+//	@JsonBackReference
 	private List<Screen> listOfScreens;
 	
     @Column(name="manager_name")
@@ -79,6 +91,7 @@ public class Theatre {
 		this.theatreCity = theatreCity;
 	}
 
+	@JsonIgnore
 	public Set<Movie> getListOfMovies() {
 		return listOfMovies;
 	}
@@ -86,7 +99,7 @@ public class Theatre {
 	public void setListOfMovies(Set<Movie> listOfMovies) {
 		this.listOfMovies = listOfMovies;
 	}
-
+	@JsonIgnore
 	public List<Screen> getListOfScreens() {
 		return listOfScreens;
 	}
@@ -94,15 +107,17 @@ public class Theatre {
 	public void setListOfScreens(List<Screen> listOfScreens) {
 		this.listOfScreens = listOfScreens;
 	}
-
+	@JsonIgnore
 	public String getManagerName() {
 		return managerName;
 	}
+
 
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
 
+	@JsonIgnore
 	public String getManagerContact() {
 		return managerContact;
 	}

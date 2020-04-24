@@ -3,136 +3,94 @@ package com.movie.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
 import com.movie.entities.Admin;
+import com.movie.entities.Movie;
 import com.movie.entities.User;
 import com.movie.entities.UserType;
 
 @Repository
 @Transactional
-public class UserDao implements IUserDao,IUniversalDao<User>{
+public class UserDao implements IUniversalDao<User>{
 
 	@PersistenceContext
 	private EntityManager em;
-	@Override
-	public UserType getUserType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean getPassword(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean isSessionActive(String session) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeSession(String session) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public long addOtp(Integer userId, long otp) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void removeOtp(Integer userId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Boolean verifyOtp(Integer userId, long otp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
-	public void changeUserType() {
+	public void save(User entityObject) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setPassword(String password) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public User addUser(User user) {
-		// TODO Auto-generated method stub
-		em.persist(user);
-		
-		return user;
-	}
-
-	@Override
-	public void removeUser(User user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeUser(Integer userId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public User save(User entityObject) {
-		// TODO Auto-generated method stub
-		return null;
+		em.persist(entityObject);
 	}
 
 	@Override
 	public User findById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		User user= em.find(User.class,id);
+		if(user==null)
+		{
+			throw new EntityNotFoundException();
+		}
+		return user;
 	}
 
 	@Override
 	public User remove(Integer id) {
 		// TODO Auto-generated method stub
+		User user=findById(id);
+		if(user!=null)
+		{
+			em.remove(user);
+		}
 		return null;
 	}
 
 	@Override
 	public User remove(User entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(entityObject);
+		return entityObject;
 	}
 
 	@Override
 	public User update(Integer id, User entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		User user=findById(id);
+		if(user==null)
+		{
+			System.out.println("Update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 	@Override
 	public List<User> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Query q=em.createQuery("From User user");
+		System.out.println(q.getResultList()==null);
+		return (List<User>) q.getResultList();
 	}
 
 	@Override
 	public User update(User entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		User user=findById(entityObject.getUserId());
+		if(user==null)
+		{
+			System.out.println("update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 

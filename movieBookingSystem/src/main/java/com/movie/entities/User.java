@@ -18,11 +18,16 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="users")
 @Inheritance(strategy=InheritanceType.JOINED) 
 @DynamicUpdate
 @DynamicInsert
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="userId")
 public class User  {
 	
 	@Id

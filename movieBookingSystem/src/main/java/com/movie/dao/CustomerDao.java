@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.data.annotation.Persistent;
@@ -14,119 +16,88 @@ import com.movie.entities.Admin;
 import com.movie.entities.Booking;
 import com.movie.entities.Customer;
 import com.movie.entities.Ticket;
+import com.movie.entities.User;
 @Repository
 @Transactional
-public class CustomerDao implements ICustomerDao,IUniversalDao<Customer> {
+public class CustomerDao implements IUniversalDao<Customer> {
 
 	@PersistenceContext
-	protected EntityManager em;
+	private EntityManager em;
 	
 	
 	public CustomerDao() {
 		super();
 	}
 
+
 	@Override
-	public void changeUserName(Integer userid, String username) {
+	public void save(Customer entityObject) {
 		// TODO Auto-generated method stub
-		
+		em.persist(entityObject);
 	}
 
 	@Override
-	public void changeEmail(Integer userid, String email) {
+	public Customer findById(Integer id) throws NullPointerException{
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Set<Booking> getBookings(Integer userid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<Ticket> getTickets(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getContact(Integer userid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Customer getCustomer(Integer userid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Customer getCustomer(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Customer addCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		em.persist(customer);
-		return null;
-	}
-
-	@Override
-	public void removeCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeCustomer(Integer userId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Customer save(Customer entityObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Customer findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Customer customer = em.find(Customer.class,id);
+		if(customer==null)
+		{
+			throw new EntityNotFoundException("Customer not found");
+		}
+		return customer;
 	}
 
 	@Override
 	public Customer remove(Integer id) {
 		// TODO Auto-generated method stub
+		Customer customer=findById(id);
+		if(customer!=null)
+		{
+			em.remove(customer);
+		}
 		return null;
+		
 	}
 
 	@Override
 	public Customer remove(Customer entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(entityObject);
+		return entityObject;
 	}
 
 	@Override
 	public Customer update(Integer id, Customer entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		Customer customer=findById(id);
+		if(customer==null)
+		{
+			System.out.println("Update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 	@Override
 	public List<Customer> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		Query q=em.createQuery("From Customer customer");
+		System.out.println(q.getResultList()==null);
+		return (List<Customer>) q.getResultList();
 	}
 
 	@Override
 	public Customer update(Customer entityObject) {
 		// TODO Auto-generated method stub
-		return null;
+		Customer customer=findById(entityObject.getUserId());
+		if(customer==null)
+		{
+			System.out.println("update error: no such entity exists first save then do this update operation");
+			return null;
+		}
+		
+		return em.merge(entityObject);
 	}
 
 }
