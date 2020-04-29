@@ -95,6 +95,7 @@ public class User  {
 	public void setOtp(Long otp) {
 		this.otp = otp;
 	}
+
 	
 	
 

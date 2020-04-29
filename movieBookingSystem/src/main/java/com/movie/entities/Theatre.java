@@ -1,5 +1,7 @@
 package com.movie.entities;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -46,7 +48,6 @@ public class Theatre {
 	joinColumns=@JoinColumn(name="theatre_id"),
 	inverseJoinColumns=@JoinColumn(name="movie_id"))
 	@Column(name="movie_id")
-//	@JsonBackReference
 	private Set<Movie> listOfMovies;
 	
     @OneToMany(
@@ -54,7 +55,6 @@ public class Theatre {
             cascade = CascadeType.ALL,
             orphanRemoval = true
         )
-//	@JsonBackReference
 	private List<Screen> listOfScreens;
 	
     @Column(name="manager_name")
@@ -63,6 +63,9 @@ public class Theatre {
     @Column(name="manager_contact")
 	private String managerContact;
 
+	@OneToMany(mappedBy="theatre",cascade=CascadeType.ALL,orphanRemoval=true)
+	private List<Show> shows;
+    
 	public Theatre() {
 		super();
 	}
@@ -91,15 +94,24 @@ public class Theatre {
 		this.theatreCity = theatreCity;
 	}
 
-	@JsonIgnore
+//	@JsonIgnore
 	public Set<Movie> getListOfMovies() {
 		return listOfMovies;
+	}
+	
+	public List<Show> getListOfShows() {
+		List<Show> shows=new ArrayList<Show>();
+		for (Iterator iterator = listOfScreens.iterator(); iterator.hasNext();) {
+			Screen screen = (Screen) iterator.next();
+			shows.addAll(screen.getShow());
+		}
+		return shows;
 	}
 
 	public void setListOfMovies(Set<Movie> listOfMovies) {
 		this.listOfMovies = listOfMovies;
 	}
-	@JsonIgnore
+//	@JsonIgnore
 	public List<Screen> getListOfScreens() {
 		return listOfScreens;
 	}
@@ -107,6 +119,8 @@ public class Theatre {
 	public void setListOfScreens(List<Screen> listOfScreens) {
 		this.listOfScreens = listOfScreens;
 	}
+
+	
 	@JsonIgnore
 	public String getManagerName() {
 		return managerName;
@@ -124,6 +138,14 @@ public class Theatre {
 
 	public void setManagerContact(String managerContact) {
 		this.managerContact = managerContact;
+	}
+
+	public List<Show> getShows() {
+		return shows;
+	}
+
+	public void setShows(List<Show> shows) {
+		this.shows = shows;
 	}
     
     

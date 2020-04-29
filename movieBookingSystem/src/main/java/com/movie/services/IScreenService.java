@@ -19,6 +19,8 @@ public interface IScreenService {
 	
 	public List<Show> getListOfShows(Integer id);
 	
+	public List<Screen> getAllScreens();
+	
 	public int getHeight(Integer id);
 	
 	public int getWidth(Integer id);

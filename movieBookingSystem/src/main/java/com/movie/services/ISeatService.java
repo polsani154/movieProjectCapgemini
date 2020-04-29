@@ -29,6 +29,8 @@ public interface ISeatService {
 	
 	public void bookSeat(Integer id);
 	
+	public void unBookSeat(Integer id);
+	
 	public List<Seat> selectSeats(List<Integer> seats);
 	
 	public void blockSeats(List<Seat> seats);

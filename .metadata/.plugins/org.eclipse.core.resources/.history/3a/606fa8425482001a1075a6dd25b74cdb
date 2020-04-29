@@ -1,9 +1,0 @@
-package com.movie.entities;
-
-import com.movie.dao.IAdminDao;
-
-public class AdminDao implements IAdminDao {
-
-	
-	
-}

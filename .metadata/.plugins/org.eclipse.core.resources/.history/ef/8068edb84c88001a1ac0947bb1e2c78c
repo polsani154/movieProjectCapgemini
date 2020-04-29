@@ -1,0 +1,5 @@
+package com.movie.exceptions;
+
+public class BadArgumentException extends Exception {
+
+}

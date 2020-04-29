@@ -1,7 +1,0 @@
-package com.movie.dao;
-
-public interface IUserDao {
-
-	
-	
-}

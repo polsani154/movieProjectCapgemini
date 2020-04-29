@@ -20,6 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.movie.dao.CustomerDao;
 import com.movie.dao.IShowDao;
@@ -61,14 +65,25 @@ public class MovieBookingSystemApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Show s=dao4.findById(8);
+//		Show s=dao4.findById(8);
 //		Screen screen=dao3.findById(11);
 //		s.setScreenId(screen);
 //		dao4.update(s);
-		System.out.println(s);
+//		System.out.println(s);
 		System.out.println("done");
 		
+		
 	}
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+			}
+		};
+	}
+
 
 }
 

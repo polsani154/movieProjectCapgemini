@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-<typeInfo handle="=movieBookingSystem/src\/main\/java&lt;com.movie.dao{ICustomerDao.java[ICustomerDao" modifiers="513" timestamp="1587399571773"/>
-<typeInfo handle="=movieBookingSystem/src\/main\/java&lt;com.movie.dao{IScreenDao.java[IScreenDao" modifiers="513" timestamp="1587311965708"/>
-<typeInfo handle="=movieBookingSystem/src\/main\/java&lt;com.movie.dao{ISeatDao.java[ISeatDao" modifiers="513" timestamp="1587376138388"/>
-<typeInfo handle="=movieBookingSystem/src\/main\/java&lt;com.movie.dao{IShowDao.java[IShowDao" modifiers="513" timestamp="1587312370006"/>
-<typeInfo handle="=movieBookingSystem/src\/main\/java&lt;com.movie.dao{ITheatreDao.java[ITheatreDao" modifiers="513" timestamp="1587377446767"/>
-<typeInfo handle="=movieBookingSystem/src\/main\/java&lt;com.movie.dao{IUserDao.java[IUserDao" modifiers="513" timestamp="1587405650931"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

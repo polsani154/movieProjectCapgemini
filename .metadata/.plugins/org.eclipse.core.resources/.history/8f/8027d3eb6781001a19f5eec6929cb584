@@ -1,9 +1,0 @@
-package com.movie.entities;
-
-import org.springframework.context.annotation.Bean;
-
-
-public class Seat {
-	
-
-}

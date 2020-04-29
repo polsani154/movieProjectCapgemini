@@ -58,4 +58,10 @@ public class ScreenService implements IScreenService{
 		return dao.findById(id).getTheatre();
 	}
 
+	@Override
+	public List<Screen> getAllScreens() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
+	}
+
 }

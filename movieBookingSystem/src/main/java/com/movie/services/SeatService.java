@@ -121,4 +121,12 @@ public class SeatService implements ISeatService{
 		
 	}
 
+	@Override
+	public void unBookSeat(Integer id) {
+		// TODO Auto-generated method stub
+		Seat seat=dao.findById(id);
+		seat.setSeatStatus(SeatState.AVAILABLE);
+		dao.update(seat);
+	}
+
 }

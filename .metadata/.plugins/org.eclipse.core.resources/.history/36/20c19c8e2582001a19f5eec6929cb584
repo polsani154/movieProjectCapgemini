@@ -1,9 +1,0 @@
-server.port:9500
-
-spring.datasource.username=polsani
-spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
-spring.datasource.password=sandeep
-spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
-
-spring.jpa.hibernate.ddl-auto=insert
-

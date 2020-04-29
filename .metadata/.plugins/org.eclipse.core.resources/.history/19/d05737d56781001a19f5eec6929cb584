@@ -1,6 +1,0 @@
-package com.movie.entities;
-@Bean
-public class Seat {
-	
-
-}

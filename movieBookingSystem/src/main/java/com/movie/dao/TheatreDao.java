@@ -73,9 +73,8 @@ public class TheatreDao implements IUniversalDao<Theatre> {
 	@Override
 	public List<Theatre> findAll() {
 		// TODO Auto-generated method stub
-		Query q=em.createQuery("From Theatre theatre");
-		System.out.println(q.getResultList()==null);
-		return (List<Theatre>) q.getResultList();
+		Query q=em.createQuery("From Theatre t");
+		return q.getResultList();
 	}
 
 	@Override

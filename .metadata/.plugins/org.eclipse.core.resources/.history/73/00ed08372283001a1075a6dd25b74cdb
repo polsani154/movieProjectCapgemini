@@ -1,9 +1,0 @@
-package com.movie.dao;
-
-import com.movie.entities.Theatre;
-
-public interface IAdminDao {
-	
-	
-
-}

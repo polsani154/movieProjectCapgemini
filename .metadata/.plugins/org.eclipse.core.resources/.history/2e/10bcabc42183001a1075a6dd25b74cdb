@@ -1,5 +1,0 @@
-package com.movie.dao;
-
-public class CustomerDao implements ICustomerDao {
-
-}

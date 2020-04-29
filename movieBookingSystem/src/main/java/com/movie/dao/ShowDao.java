@@ -31,16 +31,13 @@ public class ShowDao implements IUniversalDao<Show>,IShowDao {
 	public void save(Show entityObject) {
 		// TODO Auto-generated method stub
 		em.persist(entityObject);
+		
 	}
 
 	@Override
 	public Show findById(Integer id) throws EntityNotFoundException,NullPointerException{
 		// TODO Auto-generated method stub
 		Show show= em.find(Show.class,id);
-		if(show==null)
-		{
-			throw new EntityNotFoundException();
-		}
 		return show;
 	}
 

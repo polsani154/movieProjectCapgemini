@@ -1,5 +1,8 @@
 package com.movie.entities;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -108,7 +111,19 @@ public class Screen {
 	public List<Show> getShow() {
 		return show;
 	}
-	
+
+	public List<Show> getActiveShows() {
+		List show=new ArrayList<Show>();
+		for (Iterator iterator = this.show.iterator(); iterator.hasNext();) {
+			Show object = (Show) iterator.next();
+			if(object.getShowStartTime().isAfter(LocalDateTime.now())) {
+				show.add(object);
+			}
+			return show;
+			
+		}
+		return show;
+	}
 
 	public void setShow(List<Show> show) {
 		this.show = show;
