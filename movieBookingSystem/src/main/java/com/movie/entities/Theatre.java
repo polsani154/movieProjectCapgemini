@@ -94,16 +94,19 @@ public class Theatre {
 		this.theatreCity = theatreCity;
 	}
 
-//	@JsonIgnore
+	@JsonIgnore
 	public Set<Movie> getListOfMovies() {
 		return listOfMovies;
 	}
 	
-	public List<Show> getListOfShows() {
+	public List<Show> getListOfShowsWithMovie(Integer id) {
 		List<Show> shows=new ArrayList<Show>();
-		for (Iterator iterator = listOfScreens.iterator(); iterator.hasNext();) {
-			Screen screen = (Screen) iterator.next();
-			shows.addAll(screen.getShow());
+		for (Iterator iterator = this.shows.iterator(); iterator.hasNext();) {
+			Show show = (Show) iterator.next();
+			if(show.getMovie().getMovieId()==id)
+			{
+				shows.add(show);
+			}
 		}
 		return shows;
 	}
@@ -111,7 +114,7 @@ public class Theatre {
 	public void setListOfMovies(Set<Movie> listOfMovies) {
 		this.listOfMovies = listOfMovies;
 	}
-//	@JsonIgnore
+	@JsonIgnore
 	public List<Screen> getListOfScreens() {
 		return listOfScreens;
 	}

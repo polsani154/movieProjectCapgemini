@@ -1,6 +1,7 @@
 package com.movie.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class Booking {
 	
 	
 	@Column(name="booking_date")
-	private LocalDate bookingDate;
+	private LocalDateTime bookingDate;
 	
 	
 	@Column(name="total_cost")
@@ -111,11 +112,11 @@ public class Booking {
 		this.showRef = show;
 	}
 
-	public LocalDate getBookingDate() {
+	public LocalDateTime getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDate bookingDate) {
+	public void setBookingDate(LocalDateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

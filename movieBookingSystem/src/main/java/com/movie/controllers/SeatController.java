@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.movie.entities.Screen;
@@ -27,17 +28,40 @@ public class SeatController {
 		return service.getSeat(id);
 	}
 	
-	@PatchMapping(value="bookSeat/{id}")
-	public ResponseEntity<String> bookSeat(@PathVariable Integer id)
+	@PatchMapping(value="bookSeats")
+	public ResponseEntity<String> bookSeat(@RequestBody Integer[] id)
 	{
-		service.bookSeat(id);
+		for (Integer integer : id) {
+			service.bookSeat(integer);
+		}
+		
 		return ResponseEntity.ok("Booking done");
 	}
 	
-	@PatchMapping(value="cancelSeat/{id}")
-	public ResponseEntity<String> cancelSeat(@PathVariable Integer id)
+	@PatchMapping(value="blockSeats")
+	public ResponseEntity<String> blockSeat(@RequestBody Integer[] id)
 	{
-		service.unBookSeat(id);
+		for (Integer integer : id) {
+			service.BlockSeat(integer);
+		}
+		return ResponseEntity.ok("Blocking done");
+	}
+	
+	@PatchMapping(value="unblockSeats")
+	public ResponseEntity<String> unblockSeat(@RequestBody Integer[] id)
+	{
+		for (Integer integer : id) {
+			service.unBlockSeat(integer);
+		}
+		return ResponseEntity.ok("Booking done");
+	}
+	
+	@PatchMapping(value="cancelSeats")
+	public ResponseEntity<String> cancelSeat(@RequestBody Integer[] id)
+	{
+		for (Integer integer : id) {
+			service.unBookSeat(integer);
+		}
 		return ResponseEntity.ok("cancelling done");
 	}
 	

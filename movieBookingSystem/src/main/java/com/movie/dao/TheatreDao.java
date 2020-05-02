@@ -16,7 +16,7 @@ import com.movie.entities.Theatre;
 
 @Repository
 @Transactional
-public class TheatreDao implements IUniversalDao<Theatre> {
+public class TheatreDao implements IUniversalDao<Theatre>,ITheatreDao {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -88,6 +88,13 @@ public class TheatreDao implements IUniversalDao<Theatre> {
 		}
 		
 		return em.merge(entityObject);
+	}
+
+	@Override
+	public List<Theatre> getTheatresByCity(String city) {
+		// TODO Auto-generated method stub
+		Query q=em.createQuery(" From Theatre t where t.theatreCity = '"+city+"'");
+		return q.getResultList();
 	}
 
 

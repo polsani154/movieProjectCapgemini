@@ -36,7 +36,7 @@ public class Seat {
 	private Integer seatId;
 	
 	@Column(name="seat_price")
-	private Double seatPrice;
+	private double seatPrice;
 	
 	@Column(name="seat_Status")
 	private SeatState seatStatus;

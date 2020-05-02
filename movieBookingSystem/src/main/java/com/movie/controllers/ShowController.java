@@ -2,6 +2,7 @@ package com.movie.controllers;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.movie.entities.Seat;
 import com.movie.entities.Show;
-import com.movie.exceptions.EntityNotFoundException;
 import com.movie.services.IShowService;
 
 @RestController
-@CrossOrigin(origins="/*")
+@CrossOrigin(origins="localhost:4200")
 public class ShowController {
 
 	@Autowired
@@ -51,28 +51,5 @@ public class ShowController {
 		return show.getSeats();
 	}
 	
-	@GetMapping(value="sandeep/{id}")
-	public Seat getSomething(@PathVariable Integer id) throws Exception
-	{
-		if(id==1)
-		{
-			throw new NullPointerException("no data to provide");
-		}
-		if(id==2)
-		{
-			throw new EntityNotFoundException();
-		}
-		if(id==3)
-		{
-			throw new DataIntegrityViolationException("unique is vpoileated");
-		}
-		return null;
-		
-	}
-	@ExceptionHandler(EntityNotFoundException.class)
-	public String exceptionHandler()
-	{
-		return "Entity not found";
-	}
 	
 }

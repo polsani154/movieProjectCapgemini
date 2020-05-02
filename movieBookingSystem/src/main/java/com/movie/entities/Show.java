@@ -119,6 +119,7 @@ public class Show {
 		this.showName = showName;
 	}
 
+	@JsonIgnore
 	public Movie getMovie() {
 		return movie;
 	}
@@ -127,8 +128,14 @@ public class Show {
 		this.movie = movie;
 	}
 
+	@JsonIgnore
 	public Screen getScreen() {
 		return screen;
+	}
+	
+	public Integer getScreenId()
+	{
+		return screen.getScreenId();
 	}
 
 	public void setScreen(Screen screenId) {

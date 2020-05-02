@@ -34,7 +34,7 @@ public class ScreenDao implements IUniversalDao<Screen> {
 		Screen screen= em.find(Screen.class,id);
 		if(screen==null)
 		{
-			throw new EntityNotFoundException();
+			throw new EntityNotFoundException("screen with Id "+id+" is Not Found" );
 		}
 		return screen;
 	}

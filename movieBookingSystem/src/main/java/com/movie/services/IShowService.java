@@ -9,7 +9,7 @@ import com.movie.entities.Screen;
 import com.movie.entities.Seat;
 import com.movie.entities.Show;
 import com.movie.entities.Theatre;
-import com.movie.exceptions.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public interface IShowService {
@@ -27,4 +27,5 @@ public interface IShowService {
 	public Screen getScreen(Integer id) throws EntityNotFoundException,NullPointerException;
 	
 	public Theatre getTheatre(Integer id) throws EntityNotFoundException,NullPointerException;
+
 }

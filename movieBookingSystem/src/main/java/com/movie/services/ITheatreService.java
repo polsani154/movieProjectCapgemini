@@ -10,4 +10,8 @@ public interface ITheatreService {
 
 	public List<Theatre> getAllTheatres();
 	
+	public List<Theatre> getTheatresByCity(String city);
+	
+	public List<Theatre> getTheatresByCityAndMovie(String city,Integer movieId);
+	
 }

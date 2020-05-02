@@ -2,6 +2,8 @@ package com.movie.controllers;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,12 @@ public class ScreenController {
 	@GetMapping(value="screen/{id}")
 	public Screen getScreen(@PathVariable Integer id)
 	{
-		return service.getScreen(id);
+		Screen screen=service.getScreen(id);
+		if(screen==null)
+		{
+			throw new EntityNotFoundException("Entity not Found");
+		}
+		return screen;
 	}
 	
 	@GetMapping(value="screen/{id}/shows")

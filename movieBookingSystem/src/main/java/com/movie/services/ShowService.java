@@ -12,7 +12,7 @@ import com.movie.entities.Screen;
 import com.movie.entities.Seat;
 import com.movie.entities.Show;
 import com.movie.entities.Theatre;
-import com.movie.exceptions.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class ShowService implements IShowService{

@@ -57,7 +57,7 @@ public class Movie {
 	private Integer runtime;
 	
 	@Column(name="language")
-	private String[] Language;
+	private String Language;
 	
 	@Column(name="hero")
 	private String hero;
@@ -68,8 +68,8 @@ public class Movie {
 	@Column(name="trailer_link")
 	private String trailerLink;
 	
-	@Column(name="image_links")
-	private String[] imageLinks;
+	@Column(name="image_link")
+	private String imageLink;
 	
 	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@JoinTable(name="movie_theatre",
@@ -147,11 +147,11 @@ public class Movie {
 		this.runtime = runtime;
 	}
 
-	public String[] getLanguage() {
+	public String getLanguage() {
 		return Language;
 	}
 
-	public void setLanguage(String[] language) {
+	public void setLanguage(String language) {
 		Language = language;
 	}
 
@@ -179,12 +179,12 @@ public class Movie {
 		this.trailerLink = trailerLink;
 	}
 
-	public String[] getImageLinks() {
-		return imageLinks;
+	public String getImageLink() {
+		return imageLink;
 	}
 
-	public void setImageLinks(String[] imageLinks) {
-		this.imageLinks = imageLinks;
+	public void setImageLink(String imageLinks) {
+		this.imageLink = imageLink;
 	}
 	
 	
