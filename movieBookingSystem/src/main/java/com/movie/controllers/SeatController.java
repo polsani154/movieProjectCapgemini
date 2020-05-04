@@ -28,6 +28,7 @@ public class SeatController {
 		return service.getSeat(id);
 	}
 	
+	
 	@PatchMapping(value="bookSeats")
 	public ResponseEntity<String> bookSeat(@RequestBody Integer[] id)
 	{

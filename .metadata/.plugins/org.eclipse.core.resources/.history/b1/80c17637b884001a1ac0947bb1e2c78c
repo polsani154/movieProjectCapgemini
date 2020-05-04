@@ -1,9 +1,0 @@
-package com.movie.services;
-
-public interface IShowService {
-
-	public String getShowName(Integer id);
-	
-	public Show getShow(Integer id);
-	
-}

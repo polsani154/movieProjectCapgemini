@@ -38,6 +38,9 @@ public class User  {
 	@Column(name="password")
 	private String password;
 	
+	@Column(name="username",unique=true,nullable=false)
+	private String username;
+	
 	@Column(name="user_type")
 	private UserType userType;
 	
@@ -94,6 +97,22 @@ public class User  {
 
 	public void setOtp(Long otp) {
 		this.otp = otp;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	

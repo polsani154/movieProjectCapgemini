@@ -32,6 +32,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="userId")
 public class Customer extends User {
+
 	
 	@Column(name="username")
 	private String username;

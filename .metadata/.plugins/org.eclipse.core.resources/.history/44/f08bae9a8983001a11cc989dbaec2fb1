@@ -1,7 +1,0 @@
-package com.movie.dao;
-
-import com.movie.entities.Admin;
-
-public class TicketDa implements ITicketDao,IUniversalDao<Ticket> {
-
-}
