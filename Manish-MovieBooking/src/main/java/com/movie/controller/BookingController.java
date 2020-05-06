@@ -1,7 +1,7 @@
 package com.movie.controller;
 
 import java.util.List;
-
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,6 +71,8 @@ public class BookingController {
 		return service.successThePayment(payment, payment.getPaymentType());
 
 	}
+	
+	@PostMapping
 		
 		
 	
@@ -82,6 +84,13 @@ public class BookingController {
 		return service.getSeats(id);
 	}
 	
+	
+	@GetMapping(value="/getTickets/{userId}")
+	public Set<Ticket> getTickets(@PathVariable int userId)
+	{
+		
+		return customerservice.getTickets(userId);
+	}
 	
 
 }
