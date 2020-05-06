@@ -33,12 +33,12 @@ public class SeatDao implements IUniversalDao<Seat>,ISeatDao {
 
 	@Override
 	@Transactional
-	public Seat findById(Integer id) throws EntityNotFoundException,NullPointerException {
+	public Seat findById(Integer id) throws EntityNotFoundException{
 		// TODO Auto-generated method stub
 		Seat seat= em.find(Seat.class,id);
 		if(seat==null)
 		{
-			throw new EntityNotFoundException();
+			throw new EntityNotFoundException("Seat with Id"+id+"does not exist");
 		}
 		return seat;
 	}

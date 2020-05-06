@@ -13,26 +13,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.movie.entities.Movie;
 import com.movie.entities.Theatre;
+import com.movie.exceptions.NullPropertyException;
 import com.movie.services.IMovieService;
 import com.movie.services.ITheatreService;
 
+import net.bytebuddy.asm.Advice.Return;
+
 @CrossOrigin(origins="localhost:4200")
+
+
 @RestController
 public class MovieController {
-	@Autowired
-	ITheatreService theatreservice;
-	
+
 	@Autowired
 	IMovieService movieservice;
 
-//	@GetMapping(value="",produces="APPLICATION_JSON_VALUE")
-//	public Set<Movie> getMoviesByCity(@RequestBody String city)
-//	{
-//		return movieservice.getMoviesByCity(city);
-//	}
+	
+	/********
+	*@throws NullPropertyException 
+	 * @Returns   			Set of Movies
+	*Parameters				CityName(String)
+	*description			returns the movies that are active in the city
+	*Method name 			getMovies
+	*throws					{@link NullPropertyException}
+	*HTTP-MethodType 		Get
+	*********/
 	
 	@GetMapping(value="{city}")
-	public Set<Movie> getMovies(@PathVariable String city)
+	public Set<Movie> getMovies(@PathVariable String city) throws NullPropertyException
 	{
 		return movieservice.getMoviesByCity(city);
 	}

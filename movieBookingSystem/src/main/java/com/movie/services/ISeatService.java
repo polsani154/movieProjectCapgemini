@@ -9,6 +9,8 @@ import com.movie.entities.Customer;
 import com.movie.entities.Seat;
 import com.movie.entities.SeatState;
 import com.movie.entities.Show;
+import com.movie.exceptions.IllegalSeatStateChangeException;
+import com.movie.exceptions.NullPropertyException;
 
 @Service
 public interface ISeatService {
@@ -21,11 +23,11 @@ public interface ISeatService {
 	
 	public Show getShow(Integer id);
 	
-	public Customer getCustomer(Integer id);
+	public Customer getCustomer(Integer id) throws NullPropertyException;
 	
-	public void BlockSeat(Integer id);
+	public void BlockSeat(Integer id) throws IllegalSeatStateChangeException;
 	
-	public void unBlockSeat(Integer id);
+	public void unBlockSeat(Integer id) throws IllegalSeatStateChangeException;
 	
 	public void bookSeat(Integer id);
 	

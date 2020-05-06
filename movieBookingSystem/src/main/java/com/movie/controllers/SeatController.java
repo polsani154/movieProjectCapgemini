@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.movie.entities.Screen;
 import com.movie.entities.Seat;
+import com.movie.exceptions.IllegalSeatStateChangeException;
 import com.movie.services.ISeatService;
 import com.mysql.cj.protocol.x.ResultMessageListener;
 
@@ -22,6 +23,15 @@ public class SeatController {
 	@Autowired
 	ISeatService service;
 	
+	
+	/********
+	*Method name 			getSeat
+	*Parameters				SeatId(Integer)
+	*description			returns the seat of given id
+	*@Returns   			Returns Seat ith given id
+	*HTTP-MethodType 		Get
+	*url					/seat/{id}
+	*********/
 	@GetMapping(value="seat/{id}")
 	public Seat getSeat(@PathVariable Integer id)
 	{
@@ -29,8 +39,16 @@ public class SeatController {
 	}
 	
 	
+	/********
+	*Method name 			bookSeats
+	*Parameters				SeatId(Integer[])
+	*description			Books the seats with given Id
+	*@Returns   			Returns Response Entity Weather Booking is Done or Not String
+	*HTTP-MethodType 		Patch
+	*url					/bookSeats
+	*********/
 	@PatchMapping(value="bookSeats")
-	public ResponseEntity<String> bookSeat(@RequestBody Integer[] id)
+	public ResponseEntity<String> bookSeats(@RequestBody Integer[] id)
 	{
 		for (Integer integer : id) {
 			service.bookSeat(integer);
@@ -39,8 +57,19 @@ public class SeatController {
 		return ResponseEntity.ok("Booking done");
 	}
 	
+	
+	
+	/********
+	*Method name 			blockSeats
+	*Parameters				SeatId(Integer[])
+	*description			Blocks the seats with given Id
+	 * @throws IllegalSeatStateChangeException 
+	*@Returns   			Returns Response Entity Weather Blocking is Done or Not String
+	*HTTP-MethodType 		Patch
+	*url					/bookSeats
+	*********/	
 	@PatchMapping(value="blockSeats")
-	public ResponseEntity<String> blockSeat(@RequestBody Integer[] id)
+	public ResponseEntity<String> blockSeat(@RequestBody Integer[] id) throws IllegalSeatStateChangeException
 	{
 		for (Integer integer : id) {
 			service.BlockSeat(integer);
@@ -48,8 +77,17 @@ public class SeatController {
 		return ResponseEntity.ok("Blocking done");
 	}
 	
+	/********
+	*Method name 			unblockSeats
+	*Parameters				SeatId(Integer[])
+	*description			unblock the seats with given Id
+	 * @throws IllegalSeatStateChangeException 
+	*@Returns   			Returns Response Entity Weather blockking is Done or Not (String)
+	*HTTP-MethodType 		Patch
+	*url					/unblockSeats
+	*********/
 	@PatchMapping(value="unblockSeats")
-	public ResponseEntity<String> unblockSeat(@RequestBody Integer[] id)
+	public ResponseEntity<String> unblockSeat(@RequestBody Integer[] id) throws IllegalSeatStateChangeException
 	{
 		for (Integer integer : id) {
 			service.unBlockSeat(integer);
@@ -57,6 +95,15 @@ public class SeatController {
 		return ResponseEntity.ok("Booking done");
 	}
 	
+	
+	/********
+	*Method name 			cancelSeats
+	*Parameters				SeatId(Integer[])
+	*description			Cancels the seats with given Id
+	*@Returns   			Returns Response Entity Weather Cancelling is Done or Not. (String)
+	*HTTP-MethodType 		Patch
+	*url					/bookSeats
+	*********/
 	@PatchMapping(value="cancelSeats")
 	public ResponseEntity<String> cancelSeat(@RequestBody Integer[] id)
 	{

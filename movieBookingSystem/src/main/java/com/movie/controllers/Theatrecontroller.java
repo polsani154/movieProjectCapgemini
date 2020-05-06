@@ -20,6 +20,14 @@ public class Theatrecontroller {
 	@Autowired
 	ITheatreService theatreservice;
 	
+	/********
+	*Method name 			getTheatresAndShows
+	*Parameters				city(String) movieId(Integer)
+	*description			Gets the theatres and shows of city with the movie
+	*@Returns   			Returns List of Theatres
+	*HTTP-MethodType 		Get
+	*url					/theatres/{city}/{movieId}
+	*********/
 	@GetMapping("theatres/{city}/{movieId}")
 	public List<Theatre> getTheatresAndShows(@PathVariable("city") String city,@PathVariable("movieId") Integer movieId)
 	{

@@ -27,22 +27,32 @@ public class ShowController {
 	@Autowired
 	IShowService service;
 	
-	@GetMapping(value="show/{id}")
 
+	/********
+	*Method name 			getShow
+	*Parameters				ShowId(Integer)
+	*description			Gets the Show with the id
+	*@Returns   			Returns show with thw given Id(Show)
+	*HTTP-MethodType 		Get
+	*url					/show/{id}
+	*********/
+	@GetMapping(value="show/{id}")
 	public Show getShow(@PathVariable Integer id,HttpServletResponse response)
 	{
 		Show show;
-		try {
-			show = service.getShow(id);
-		} catch (NullPointerException | EntityNotFoundException e) {
-			// TODO Auto-generated catch block
-            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            return null;
-		}
+		show = service.getShow(id);
 		return show;
 	}
 	
 
+	/********
+	*Method name 			getOnlySeats
+	*Parameters				ShowId(Integer)
+	*description			Gets the seats of the show with the id
+	*@Returns   			Returns the list of seats of show
+	*HTTP-MethodType 		Get
+	*url					/show/{id}/seats
+	*********/
 	@GetMapping(value="show/{id}/seats")
 	public List<Seat> getOnlySeats(@PathVariable Integer id,HttpServletResponse response) throws NullPointerException, EntityNotFoundException
 	{
