@@ -221,7 +221,6 @@ public class BookingService implements IBookingService {
 		t.setBookingRef(booking);
 		t.setNoOfSeats(booking.getSeatList().size());
 		t.setScreenName(showdao.findById(booking.getShowId()).getScreen().getScreenName());
-		t.setScreenName(null);
 		t.setTicketStatus(true);
 		Integer id=ticketdao.saveAndgetId(t);
 		return ticketdao.findById(id);

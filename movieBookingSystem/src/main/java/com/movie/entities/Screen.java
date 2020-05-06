@@ -38,7 +38,7 @@ public class Screen {
 	@Column(name="screen_id")
 	private Integer screenId;
 	
-//	@Column(name="theatre_id")
+	@JoinColumn(name="theatre_id",referencedColumnName="theatre_id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Theatre theatre;
 	
@@ -76,6 +76,7 @@ public class Screen {
 	}
 	
 	public Integer getTheatreId() throws NullPointerException {
+		
 		return theatre.getTheatreId();
 	}
 

@@ -37,11 +37,11 @@ public class BookingController {
 	@Autowired
 	ICustomerService customerservice;
 	
-	@PostMapping(value="/book")
+	@PostMapping(value="/book/{id}")
 	public Booking
-	generateBooking(@RequestBody Seat[] seats) throws Exception
+	generateBooking(@PathVariable("id") int id,@RequestBody Seat[] seats) throws Exception
 	{	
-		return service.generateBooking(seats,customerservice.getCustomer(3));
+		return service.generateBooking(seats,customerservice.getCustomer(id));
 	}
 	
 	@PostMapping(value="/expire")

@@ -1,5 +1,5 @@
 package com.movie.exceptions;
 
-public class BadArgumentException {
+public class ExceptionResponse {
 
 }
