@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
 	/**********************************
 	 * Exception Handler
      *Method:     			handleNullPointerException
-     *description:   		-handles NullProperty exception, It is raised if the return value is null
+     *description:   		-handles NullPointer exception, It is raised if the return value is null
      *Exception                -gets the exception referrence as input
      *@returns                 -ExceptionResponse
      *created by               -Polsani sandeep

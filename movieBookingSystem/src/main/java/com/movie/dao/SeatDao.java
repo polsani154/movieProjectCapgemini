@@ -38,7 +38,7 @@ public class SeatDao implements IUniversalDao<Seat>,ISeatDao {
 		Seat seat= em.find(Seat.class,id);
 		if(seat==null)
 		{
-			throw new EntityNotFoundException("Seat with Id"+id+"does not exist");
+			throw new EntityNotFoundException("Seat with Id "+id+" does not exist");
 		}
 		return seat;
 	}

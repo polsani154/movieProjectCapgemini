@@ -38,7 +38,7 @@ public class MovieService implements IMovieService {
 			movies.addAll(theatre.getListOfMovies());
 		}
 
-		if(movies==null)
+		if(movies.size()==0)
 		{
 			throw new NullPropertyException("Currently no movies are running in theatres of city"+city);
 		}

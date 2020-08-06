@@ -38,6 +38,10 @@ public class ShowDao implements IUniversalDao<Show>,IShowDao {
 	public Show findById(Integer id) throws EntityNotFoundException,NullPointerException{
 		// TODO Auto-generated method stub
 		Show show= em.find(Show.class,id);
+		if(show==null)
+		{
+			throw new EntityNotFoundException("Show with id "+id+" is not found");
+		}
 		return show;
 	}
 

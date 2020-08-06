@@ -86,7 +86,7 @@ public class ScreenService implements IScreenService{
 	public List<Show> getListOfShows(Integer id) throws NullPropertyException {
 		// TODO Auto-generated method stub
 		List<Show> shows=dao.findById(id).getShow();
-		if(shows==null)
+		if(shows.size()==0)
 		{
 			throw new NullPropertyException("No shows present in the screen");
 			

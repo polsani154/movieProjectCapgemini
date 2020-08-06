@@ -1,5 +1,6 @@
 package com.movie.services;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -163,7 +164,7 @@ public class SeatService implements ISeatService{
 	public List<Seat> selectSeats(List<Integer> seats) {
 		// TODO Auto-generated method stub
 		
-		List<Seat> seatsList=null;
+		List<Seat> seatsList=new ArrayList<Seat>();
 		for (Iterator iterator = seats.iterator(); iterator.hasNext();) {
 			Integer seatid = (Integer) iterator.next();
 			seatsList.add(dao.findById(seatid));

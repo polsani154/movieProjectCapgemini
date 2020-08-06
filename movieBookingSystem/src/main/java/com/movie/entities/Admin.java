@@ -24,6 +24,7 @@ public class Admin extends User{
 	@Column(name="admin_name")
 	private String adminName;
 	
+	
 	@Column(name="admin_contact",unique=true)
 	private String adminContact;
 

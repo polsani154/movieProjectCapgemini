@@ -39,7 +39,7 @@ public class MovieDao implements IUniversalDao<Movie> {
 		Movie movie= em.find(Movie.class,id);
 		if(movie==null)
 		{
-			throw new EntityNotFoundException();
+			throw new EntityNotFoundException("Movie with id "+id+" is not found");
 		}
 		return movie;
 	}

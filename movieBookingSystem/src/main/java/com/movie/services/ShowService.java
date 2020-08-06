@@ -132,7 +132,7 @@ public class ShowService implements IShowService{
 			throw new EntityNotFoundException("Show with id "+id+" is not found please verify");
 		}
 		
-		if(show.getSeats()==null)
+		if(show.getSeats().size()==0)
 		{
 			throw new NullPropertyException("No Seats are connected with the Show"+id);
 		}

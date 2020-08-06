@@ -33,7 +33,7 @@ public class TicketDao implements IUniversalDao<Ticket> {
 		Ticket ticket= em.find(Ticket.class,id);
 		if(ticket==null)
 		{
-			throw new EntityNotFoundException();
+			throw new EntityNotFoundException("Ticket not found with id " +id);
 		}
 		return ticket;
 	}

@@ -35,7 +35,7 @@ public class UserDao implements IUniversalDao<User>{
 		User user= em.find(User.class,id);
 		if(user==null)
 		{
-			throw new EntityNotFoundException();
+			throw new EntityNotFoundException(" User not found with id "+id);
 		}
 		return user;
 	}

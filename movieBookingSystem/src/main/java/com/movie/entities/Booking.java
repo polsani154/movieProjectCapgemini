@@ -68,7 +68,6 @@ public class Booking {
 	
 	
 	@OneToOne(mappedBy="bookingRef")
-	@Autowired
 //	@JsonBackReference
 	private Ticket ticket;
 

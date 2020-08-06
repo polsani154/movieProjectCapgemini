@@ -2,4 +2,5 @@
 <aop-reference-model>
 <aop-project name="movieBookingSystem"/>
 <aop-project name="Manish-MovieBooking"/>
+<aop-project name="understandingJPA"/>
 </aop-reference-model>
